@@ -14,7 +14,8 @@ class CustomUserAdmin(UserAdmin):
 @admin.register(Chat)
 class ChatAdmin(admin.ModelAdmin):
     model = Chat 
-    list_display = ("id", "title", "created_at")
+    list_display = ("id", "title", "status", "created_at")
+    list_filter = ("status",)
 
 
 @admin.register(ChatMessage)

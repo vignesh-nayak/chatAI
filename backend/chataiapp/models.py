@@ -13,8 +13,15 @@ class CustomUser(AbstractUser):
 
 
 class Chat(models.Model):
+    class Status(models.TextChoices):
+        ACTIVE = "active", "Active"
+        ENDED = "ended", "Ended"
+
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
-    title = models.CharField(max_length=255, blank=True, null=True)  # Optional, for UI display
+    title = models.CharField(max_length=255, blank=True, null=True)
+    status = models.CharField(
+        max_length=10, choices=Status.choices, default=Status.ACTIVE
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
